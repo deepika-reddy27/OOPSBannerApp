@@ -1,22 +1,14 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class OOPSBanner {
-
-    static class CharacterPattern {
-        private char character;
-        private String[] pattern;
-
-        public CharacterPattern(char character, String[] pattern) {
-            this.character = character;
-            this.pattern = pattern;
-        }
-
-        public String[] getPattern() {
-            return pattern;
-        }
-    }
 
     public static void main(String[] args) {
 
-        CharacterPattern letterO = new CharacterPattern('O', new String[]{
+        // Map to store character → banner pattern
+        Map<Character, String[]> patternMap = new HashMap<>();
+
+        patternMap.put('O', new String[]{
                 " ***** ",
                 "*     *",
                 "*     *",
@@ -25,7 +17,7 @@ public class OOPSBanner {
                 "*     *",
                 " ***** "
         });
-		CharacterPattern letterO2 = new CharacterPattern('O', new String[]{
+		patternMap.put('O', new String[]{
                 " ***** ",
                 "*     *",
                 "*     *",
@@ -35,8 +27,7 @@ public class OOPSBanner {
                 " ***** "
         });
 
-
-        CharacterPattern letterP = new CharacterPattern('P', new String[]{
+        patternMap.put('P', new String[]{
                 " ***** ",
                 "*     *",
                 "*     *",
@@ -46,7 +37,7 @@ public class OOPSBanner {
                 "*      "
         });
 
-        CharacterPattern letterS = new CharacterPattern('S', new String[]{
+        patternMap.put('S', new String[]{
                 " ***** ",
                 "*      ",
                 "*      ",
@@ -56,13 +47,14 @@ public class OOPSBanner {
                 " ***** "
         });
 
-        CharacterPattern[] banner = {letterO, letterO, letterP, letterS};
+        String bannerWord = "OOPS";
 
         for (int row = 0; row < 7; row++) {
             StringBuilder line = new StringBuilder();
 
-            for (CharacterPattern cp : banner) {
-                line.append(cp.getPattern()[row]).append("  ");
+            for (char ch : bannerWord.toCharArray()) {
+                String[] pattern = patternMap.get(ch);
+                line.append(pattern[row]).append("  ");
             }
 
             System.out.println(line);
